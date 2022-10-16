@@ -1,0 +1,40 @@
+<div class="content"
+    fxLayoutAlign="space-around center"
+    fxFlex="100%"
+    fxLayout="row wrap"
+    fxLayoutGap="24%"
+>
+    <h2>Twoje plany treningowe</h2>
+
+    <p-table class="table" fxFlex="100%" [columns]="cols" [value]="testData" responsiveLayout="scroll">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr class="plan-row">
+                <td (click)="onRowClick($event, data.id)">
+                    {{ data.name }}
+                </td>
+                <td (click)="onRowClick($event, data.id)">
+                    {{ data.date }}
+                </td>
+                <td (click)="onRowClick($event, data.id)">
+                    {{ data.difficulty }}
+                </td>
+                <td (click)="onRowClick($event, data.id)">
+                    {{ data.mainMuscleGroup }}
+                </td>
+                <td>
+                    <button class="button" pButton label="Edytuj"></button>
+                </td>
+                <td>
+                    <button class="button" pButton label="Usuń"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

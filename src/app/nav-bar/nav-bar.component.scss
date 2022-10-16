@@ -1,0 +1,34 @@
+.navbar {
+    background-color:  #53a9b0;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 1800px;
+    margin: 0 auto;
+    border-bottom: 1px solid #74cba7;
+    border-radius: 10px;
+}
+
+.navbar h1 {
+    color: #fff;
+}
+
+.navbar .links {
+    margin-left: auto;
+}
+
+.navbar a {
+    background-color: #e27d60;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-left: 16px;
+    text-decoration: none;
+    padding: 6px;
+    border-bottom: 1px solid #c05b40;
+}
+
+.navbar a:hover {
+    background-color: #c05b40;
+    color: #fff;
+}

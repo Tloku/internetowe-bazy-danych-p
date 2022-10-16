@@ -1,0 +1,24 @@
+h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.table {
+    cursor: pointer;
+}
+
+.content {
+    margin: auto;
+    width: 1200px;
+}
+
+.button {
+    background-color: #e27d60;
+    border: 1px solid #b27c8d;
+}
+
+.button:hover {
+    background-color: #b27c8d !important;
+    color: #fff;
+    border: 1px solid #b27c8d;
+}

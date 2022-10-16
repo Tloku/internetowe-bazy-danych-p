@@ -1,0 +1,41 @@
+<div class="content"
+    fxLayoutAlign="space-around center"
+    fxFlex="100%"
+    fxLayout="row wrap"
+    fxLayoutGap="24%"
+>
+    <div class="title">
+        <h2>Lista ćwiczeń</h2>
+    </div>
+    <div class="exercise-list">
+        <p-table class="table" fxFlex="100%" [columns]="cols" [value]="exercises" responsiveLayout="scroll">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-exercise>
+                <tr class="plan-row" (click)="onRowClick($event, exercise.id)">
+                    <td>
+                        {{ exercise.name }}
+                    </td>
+                    <td>
+                        {{ exercise.muscleGroup }}
+                    </td>
+                    <td>
+                        {{ exercise.reps }}
+                    </td>
+                    <td>
+                        {{ exercise.series }}
+                    </td>
+                    <td>
+                        {{ exercise.difficulty }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
