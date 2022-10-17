@@ -5,6 +5,14 @@ import { ExerciseDetail } from "src/app/model/exercise-detail";
 import { ExerciseDetailService } from "../../service/exercise-detali.service";
 
 
+const DETAIL: ExerciseDetail = {
+    name: "Podciąganie",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
+    ytTutorialUrl: "https://youtu.be/YYbqPzlwY6c",
+    difficulty: "Trudne",
+    muscleGroup: "Plecy"
+} 
+
 @Component({
     selector: 'app-exercise-detail-component',
     templateUrl: './exercise-detail.component.html',
@@ -12,7 +20,7 @@ import { ExerciseDetailService } from "../../service/exercise-detali.service";
 })
 export class ExerciseDetailComponent implements OnInit, OnDestroy{
     public exerciseDetail: ExerciseDetail;
-    private sub: Subscription;
+    private sub: Subscription = new Subscription();
     private routeSub: Subscription;
     private exerciseId: number;
 
@@ -32,6 +40,7 @@ export class ExerciseDetailComponent implements OnInit, OnDestroy{
                 catchError(e => throwError(e))
             )
         )
+        this.exerciseDetail = DETAIL;
     }
 
     ngOnDestroy(): void {

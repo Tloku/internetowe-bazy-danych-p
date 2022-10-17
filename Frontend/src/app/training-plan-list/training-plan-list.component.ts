@@ -1,4 +1,3 @@
-import { TemplateBindingParseResult } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,7 +14,7 @@ export class TrainingPlanListComponent implements OnInit {
   // @Input() userLogin: string
   public trainingPlanData: TrainingPlanTableData[]; 
   public cols: any[] = [];
-  private sub: Subscription;
+  private sub: Subscription = new Subscription();
 
   testData: TrainingPlanTableData[] = [
       {
