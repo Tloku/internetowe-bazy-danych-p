@@ -9,8 +9,6 @@ export class ExerciseDetailContainer implements OnInit {
 
     constructor() {}
 
-    ngOnInit(): void {
-        throw new Error("Method not implemented.");
-    }
+    ngOnInit(): void {}
     
 }

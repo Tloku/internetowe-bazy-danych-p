@@ -40,7 +40,7 @@ const EXERCISES: ExerciseTableData[] = [
 export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
 
   private routeSub: Subscription;
-  private sub: Subscription;
+  private sub: Subscription = new Subscription();
   public exercises: ExerciseTableData[] = [];
   private planId: number;
   public cols: any[];

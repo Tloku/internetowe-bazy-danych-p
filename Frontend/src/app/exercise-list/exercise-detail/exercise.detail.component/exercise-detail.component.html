@@ -1,0 +1,30 @@
+<div class="content">
+    <h1> {{ exerciseDetail.name }} </h1>
+
+    <div class="subtitles">
+        <h2>Grupa mięsniowa: {{ exerciseDetail.muscleGroup }} </h2>
+        <h2>Poziom trudności: {{ exerciseDetail.difficulty }} </h2>
+    </div>
+
+    <div class="article">
+        <p-card>
+            <article>
+                {{ exerciseDetail.description }}
+            </article>
+        </p-card>
+    </div>
+
+    <div class="ytVideo">
+        <div class="player">
+            <youtube-player
+            videoId="YYbqPzlwY6c"
+            suggestedQuality="highres"
+            [height]="400"
+            [width]="550"
+            [startSeconds]="0"
+            >
+        </youtube-player>
+        </div>
+        
+    </div>
+</div>

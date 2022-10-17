@@ -20,6 +20,10 @@ import { ExerciseDetailService } from './exercise-list/service/exercise-detali.s
 import { ExerciseDetailRestService } from './exercise-list/service/exercise-detail.rest.service';
 import { TrainingPlanListService } from './training-plan-list/service/training-plan-list.service';
 import { TrainingPlanListRestService } from './training-plan-list/service/training-plan-list.rest.service';
+import { ExerciseDetailComponent } from './exercise-list/exercise-detail/exercise.detail.component/exercise-detail.component';
+import { ExerciseDetailContainer } from './exercise-list/exercise-detail/exercise-detail.container/exercise-detail.container';
+import { CardModule } from 'primeng/card';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { TrainingPlanListRestService } from './training-plan-list/service/traini
     TrainingPlanListComponent,
     NavBarComponent,
     MainPageComponent,
-    ExerciseListFromPlanComponent
+    ExerciseListFromPlanComponent,
+    ExerciseDetailComponent,
+    ExerciseDetailContainer
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import { TrainingPlanListRestService } from './training-plan-list/service/traini
     FieldsetModule,
     BrowserAnimationsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule,
+    YouTubePlayerModule
   ],
   providers: [
     ExerciseListService,

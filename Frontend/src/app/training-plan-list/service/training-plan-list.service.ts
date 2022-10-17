@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { TrainingPlanTableData } from "src/app/model/training-plan-table-data";
 import { TrainingPlanListRestService } from "./training-plan-list.rest.service";
 
@@ -9,6 +9,6 @@ export class TrainingPlanListService {
     constructor(private trainingPlanListRestService: TrainingPlanListRestService) {}
     
     getTrainingPlans(userLogin: string): Observable<TrainingPlanTableData[]> {
-      return null
+      return of([]);
     }
 }
