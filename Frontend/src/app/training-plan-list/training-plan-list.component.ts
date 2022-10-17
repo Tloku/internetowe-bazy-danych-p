@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { TemplateBindingParseResult } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface TestData {
-  id: number;
-  name: string;
-  date: string;
-  difficulty: string;
-  mainMuscleGroup: string;
-}
-
+import { Subscription } from 'rxjs';
+import { TrainingPlanTableData } from '../model/training-plan-table-data';
+import { TrainingPlanListService } from './service/training-plan-list.service';
 
 @Component({
   selector: 'app-training-plan-list',
@@ -17,9 +12,12 @@ interface TestData {
 })
 export class TrainingPlanListComponent implements OnInit {
 
-  cols: any[] = [];
+  // @Input() userLogin: string
+  public trainingPlanData: TrainingPlanTableData[]; 
+  public cols: any[] = [];
+  private sub: Subscription;
 
-  testData: TestData[] = [
+  testData: TrainingPlanTableData[] = [
       {
         id: 1,
         name: "plan 1",
@@ -43,10 +41,12 @@ export class TrainingPlanListComponent implements OnInit {
       },
 ];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private trainingPlanListService: TrainingPlanListService  
+  ) { }
 
   ngOnInit() {
-
     this.cols = [
         { field: 'name', header: 'Nazwa' },
         { field: 'date', header: 'Data' },
@@ -55,10 +55,18 @@ export class TrainingPlanListComponent implements OnInit {
         { field: '', header: ''},
         { field: '', header: ''},
     ];
+
+    let userLogin: string;
+    this.sub.add(
+      this.trainingPlanListService.getTrainingPlans(userLogin).subscribe(
+        data => this.trainingPlanData = data
+      )
+    );
   }
 
   public onRowClick($event, id) {
     this.router.navigateByUrl('/plans/' + id);
   }
+
 
 }

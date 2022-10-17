@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ExerciseListService } from '../service/exercise-list.service';
+import { catchError, Subscription, throwError } from 'rxjs';
 import { ExerciseTableData } from 'src/app/model/exercise-table-data';
-
 
 const EXERCISES: ExerciseTableData[] = [
   {
@@ -40,13 +40,15 @@ const EXERCISES: ExerciseTableData[] = [
 export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
 
   private routeSub: Subscription;
+  private sub: Subscription;
   public exercises: ExerciseTableData[] = [];
   private planId: number;
   public cols: any[];
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router  
+    private router: Router,
+    private exerciseListService: ExerciseListService 
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +63,17 @@ export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
       { field: 'difficulty', header: 'Trudność' },
       { field: 'muscleGroup', header: 'Partia mięśniowa'},
     ];
+
+    this.sub.add(
+      this.exerciseListService.getExercisesFromPlan(this.planId).subscribe((data) => {      
+        if(data) {
+          this.exercises = data;
+        }
+      },
+        catchError(e => throwError(e))
+      )
+    );
+
     this.exercises = EXERCISES;
   }
 

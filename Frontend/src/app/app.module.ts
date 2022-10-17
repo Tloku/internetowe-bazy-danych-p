@@ -13,6 +13,13 @@ import {FieldsetModule} from 'primeng/fieldset';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from '@angular/router';
 import { ExerciseListFromPlanComponent } from './exercise-list/exercise-list-from-plan/exercise-list-from-plan.component';
+import { ExerciseListService } from './exercise-list/service/exercise-list.service';
+import { ExerciseListRestService } from './exercise-list/service/exercise-list.rest.service';
+import { HttpClientModule } from '@angular/common/http'
+import { ExerciseDetailService } from './exercise-list/service/exercise-detali.service';
+import { ExerciseDetailRestService } from './exercise-list/service/exercise-detail.rest.service';
+import { TrainingPlanListService } from './training-plan-list/service/training-plan-list.service';
+import { TrainingPlanListRestService } from './training-plan-list/service/training-plan-list.rest.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +37,17 @@ import { ExerciseListFromPlanComponent } from './exercise-list/exercise-list-fro
     TableModule,
     FieldsetModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ExerciseListService,
+    ExerciseListRestService,
+    ExerciseDetailService,
+    ExerciseDetailRestService,
+    TrainingPlanListService,
+    TrainingPlanListRestService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
