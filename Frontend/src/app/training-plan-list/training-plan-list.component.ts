@@ -20,21 +20,24 @@ export class TrainingPlanListComponent implements OnInit {
       {
         id: 1,
         name: "plan 1",
-        date: "08.08.2022",
+        dateFrom: "08.08.2022",
+        dateTo: "08.08.2022",
         difficulty: "Łatwy",
         mainMuscleGroup: "Klatka piersiowa"
       },
       {
         id: 2,
         name: "plan 2",
-        date: "10.08.2022",
+        dateFrom: "10.08.2022",
+        dateTo: "10.08.2022",
         difficulty: "Średni",
         mainMuscleGroup: "Nogi"
       },
       {
         id: 3,
         name: "plan 3",
-        date: "12.08.2022",
+        dateFrom: "12.08.2022",
+        dateTo: "12.08.2022",
         difficulty: "Trudny",
         mainMuscleGroup: "Plecy"
       },
@@ -48,7 +51,8 @@ export class TrainingPlanListComponent implements OnInit {
   ngOnInit() {
     this.cols = [
         { field: 'name', header: 'Nazwa' },
-        { field: 'date', header: 'Data' },
+        { field: 'dateFrom', header: 'Początek' },
+        { field: 'dateTo', header: 'Koniec' },
         { field: 'difficulty', header: 'Trudność' },
         { field: 'mainMuscleGroup', header: 'Główna partia mięśniowa'},
         { field: '', header: ''},
