@@ -24,6 +24,19 @@ import { ExerciseDetailComponent } from './exercise-list/exercise-detail/exercis
 import { ExerciseDetailContainer } from './exercise-list/exercise-detail/exercise-detail.container/exercise-detail.container';
 import { CardModule } from 'primeng/card';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { PickListModule } from 'primeng/picklist'
+import { CreatePlanContainer } from './create-plan/create-plan-container/create-plan.container';
+import { CreatePlanPickListComponent } from './create-plan/create-plan-pick-list/create-plan-pick-list.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { CreatePlanFiltersComponent } from './create-plan/create-plan-filters/create-plan-filters.component';
+import { FlexModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { GMapModule } from 'primeng/gmap';
+import { GMapService } from './g-map/g-map.service';
+import { GMapComponent } from './g-map/g-map.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -33,7 +46,11 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     MainPageComponent,
     ExerciseListFromPlanComponent,
     ExerciseDetailComponent,
-    ExerciseDetailContainer
+    ExerciseDetailContainer,
+    CreatePlanPickListComponent,
+    CreatePlanContainer,
+    CreatePlanFiltersComponent,
+    GMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +63,14 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     RouterModule,
     HttpClientModule,
     CardModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    PickListModule,
+    DropdownModule,
+    FlexModule,
+    FormsModule,
+    GMapModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     ExerciseListService,
@@ -54,7 +78,9 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     ExerciseDetailService,
     ExerciseDetailRestService,
     TrainingPlanListService,
-    TrainingPlanListRestService
+    TrainingPlanListRestService,
+    GMapService,
+    MessageService
   ],
   bootstrap: [AppComponent],
 })

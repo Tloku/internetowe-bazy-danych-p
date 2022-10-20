@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseListService } from '../service/exercise-list.service';
 import { catchError, Subscription, throwError } from 'rxjs';
-import { ExerciseTableData } from 'src/app/model/exercise-table-data';
+import { ExerciseWithRepsTableData } from 'src/app/model/exercise-table-data';
 
-const EXERCISES: ExerciseTableData[] = [
+const EXERCISES: ExerciseWithRepsTableData[] = [
   {
     id: 1,
     name: "Podciąganie",
@@ -41,7 +41,7 @@ export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
 
   private routeSub: Subscription;
   private sub: Subscription = new Subscription();
-  public exercises: ExerciseTableData[] = [];
+  public exercises: ExerciseWithRepsTableData[] = [];
   private planId: number;
   public cols: any[];
 

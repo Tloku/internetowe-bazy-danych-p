@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { ExerciseTableData } from "src/app/model/exercise-table-data";
+import { ExerciseWithRepsTableData } from "src/app/model/exercise-table-data";
 import { ExerciseListRestService } from "./exercise-list.rest.service";
 
 @Injectable()
@@ -8,7 +8,7 @@ export class ExerciseListService {
 
     constructor(private exerciseListRestService: ExerciseListRestService) {}
 
-    getExercisesFromPlan(planId: number): Observable<ExerciseTableData[]> {
+    getExercisesFromPlan(planId: number): Observable<ExerciseWithRepsTableData[]> {
         if (isNaN(planId) || !planId) {
             return of([]);
         } 

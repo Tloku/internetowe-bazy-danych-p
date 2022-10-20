@@ -1,0 +1,72 @@
+<div class="content">
+    <div class="pick-list">
+        <p-table class="table" [value]="exercise" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 15]">
+        <ng-template pTemplate="caption">
+            Lista wszystkich ćwiczeń 
+        </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Poziom trudności</th>
+                    <th>Partia</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-exercise>
+                <tr class="rows" (click)="addToPlan(exercise.id)">
+                    <td>
+                        {{ exercise.name }}
+                    </td>
+                    <td>
+                        {{ exercise.difficulty }}
+                    </td>
+                    <td>
+                        {{ exercise.muscleGroup }}
+                    </td>
+                </tr>
+            </ng-template>
+            
+            <ng-template pTemplate="paginatorright" style="margin: auto;">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="picked-list">
+        <p-table class="table" [value]="null" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 15]">
+            <ng-template pTemplate="caption">
+                Ćwiczenia w twoim  nowym planie
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Poziom trudności</th>
+                    <th>Partia</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-exercise>
+                <tr class="rows" (click)="removeFromPlan(exercise.id)">
+                    <td>
+                        {{ exercise.name }}
+                    </td>
+                    <td>
+                        {{ exercise.difficulty }}
+                    </td>
+                    <td>
+                        {{ exercise.muscleGroup }}
+                    </td>
+                </tr>
+            </ng-template>
+            
+            <ng-template pTemplate="paginatorright" style="margin: auto;">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<div class="add-button">
+    <button class="p-button-success p-button-rounded" pRipple pButton label="Stwórz plan" icon="pi pi-check"></button>
+</div>

@@ -1,0 +1,38 @@
+.content {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    height: 600px;
+    margin-top: 2%;
+    justify-content: space-around;
+}
+
+.pick-list {
+    margin-top: 40px;
+    width: 45%;
+    background-color: #c38d9e;
+    margin-left: 20px;
+    height: 100%;
+}
+
+.picked-list {
+    margin-top: 40px;
+    width: 45%;
+    background-color: #c38d9e;
+    margin-right: 20px;
+    height: 100%;
+}
+
+.rows {
+    cursor: pointer;
+}
+
+.add-button {
+    display: flex;
+    height: 100px;
+    width: 200px;
+    margin: auto;
+    margin-top: 15%;
+    justify-content: center;
+    
+}
