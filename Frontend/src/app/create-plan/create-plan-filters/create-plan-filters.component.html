@@ -1,0 +1,20 @@
+<div class="content"
+    fxLayout="row wrap"
+    fxLayoutGap="20px"
+    fxLayoutAlign="center center"
+>
+    <div>
+        <span class="p-float-label">
+            <input id="name" type="text" pInputText>
+            <label for="name" >Nazwa ćwiczenia</label>
+        </span>
+    </div>
+    <span>
+        <p-dropdown  [options]=""  [(ngModel)]="muscleGroupFilterValue" placeholder="Partia" [showClear]="true"></p-dropdown>
+    </span>
+    <span>
+        <p-dropdown [options]="" [(ngModel)]="difficultyFilterValue" placeholder="Trudność" ></p-dropdown>
+    </span>
+
+    <button type="button" class="p-button-help p-button-rounded" pButton label="Filtruj" icon="pi pi-search"></button>
+</div>
