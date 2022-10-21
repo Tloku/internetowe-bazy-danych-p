@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pl.edu.pwr</groupId>
-	<artifactId>gym-plan-server</artifactId>
+	<artifactId>gym-trainingPlan-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gym-plan-server</name>
+	<name>gym-trainingPlan-server</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>

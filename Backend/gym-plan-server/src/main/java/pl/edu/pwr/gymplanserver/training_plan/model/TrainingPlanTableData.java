@@ -1,4 +1,4 @@
-package pl.edu.pwr.gymplanserver.plan.model;
+package pl.edu.pwr.gymplanserver.training_plan.model;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
