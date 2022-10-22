@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { ExerciseDetail } from "src/app/model/exercise-detail";
+import { Exercise } from "src/app/model/exercise";
 import { ExerciseDetailRestService } from "./exercise-detail.rest.service";
 
 @Injectable()
@@ -8,7 +8,7 @@ export class ExerciseDetailService {
 
     constructor(private exerciseDetailRestService: ExerciseDetailRestService) {}
 
-    public getExerciseDetail(id: number): Observable<ExerciseDetail> {
+    public getExerciseDetail(id: number): Observable<Exercise> {
         if (isNaN(id) || !id) {
             return of(null);
         } 

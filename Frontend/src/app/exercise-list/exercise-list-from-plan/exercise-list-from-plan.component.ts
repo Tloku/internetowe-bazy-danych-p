@@ -4,34 +4,6 @@ import { ExerciseListService } from '../service/exercise-list.service';
 import { catchError, Subscription, throwError } from 'rxjs';
 import { ExerciseWithRepsTableData } from 'src/app/model/exercise-table-data';
 
-const EXERCISES: ExerciseWithRepsTableData[] = [
-  {
-    id: 1,
-    name: "Podciąganie",
-    reps: 5,
-    series: 3,
-    muscleGroup: "plecy",
-    difficulty: "trudne"
-  },
-  {
-    id: 2,
-    name: "Wyciskanie na ławce płaskiej",
-    reps: 10,
-    series: 3,
-    muscleGroup: "Klatka piersiowa",
-    difficulty: "średnie"
-  },
-  {
-    id: 3,
-    name: "Bieganie na bieżni",
-    reps: 0,
-    series: 0,
-    muscleGroup: "Kardio",
-    difficulty: "Łatwe"
-  },
-];
-
-
 @Component({
   selector: 'app-exercise-list-from-plan',
   templateUrl: './exercise-list-from-plan.component.html',
@@ -65,16 +37,15 @@ export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
     ];
 
     this.sub.add(
-      this.exerciseListService.getExercisesFromPlan(this.planId).subscribe((data) => {      
-        if(data) {
+      this.exerciseListService.getExercisesFromPlan(this.planId).subscribe({
+        next: data => {
           this.exercises = data;
+        },
+        error: msg => {
+          console.log("Error: ", msg);
         }
-      },
-        catchError(e => throwError(e))
-      )
+      })
     );
-
-    this.exercises = EXERCISES;
   }
 
   ngOnDestroy(): void {

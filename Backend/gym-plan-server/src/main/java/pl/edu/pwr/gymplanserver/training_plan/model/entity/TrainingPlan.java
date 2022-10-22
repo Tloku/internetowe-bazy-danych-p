@@ -24,6 +24,8 @@ public class TrainingPlan {
     private LocalDate dateFrom;
     private LocalDate dateTo;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private MuscleGroup mainMuscleGroup;
 
     @OneToMany(mappedBy = "trainingPlan")

@@ -1,17 +1,11 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { catchError, Subscription, throwError } from "rxjs";
-import { ExerciseDetail } from "src/app/model/exercise-detail";
+import { Subscription } from "rxjs";
+import { Difficulty } from "src/app/model/difficulty";
+import { Exercise } from "src/app/model/exercise";
 import { ExerciseDetailService } from "../../service/exercise-detali.service";
 
 
-const DETAIL: ExerciseDetail = {
-    name: "Podciąganie",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
-    url: "https://youtu.be/YYbqPzlwY6c",
-    difficulty: "Trudne",
-    muscleGroup: "Plecy"
-} 
 
 @Component({
     selector: 'app-exercise-detail-component',
@@ -19,7 +13,7 @@ const DETAIL: ExerciseDetail = {
     styleUrls: ['./exercise-detail.component.scss']
 })
 export class ExerciseDetailComponent implements OnInit, OnDestroy{
-    public exerciseDetail: ExerciseDetail;
+    public exerciseDetail: Exercise;
     private sub: Subscription = new Subscription();
     private routeSub: Subscription;
     private exerciseId: number;
@@ -29,18 +23,25 @@ export class ExerciseDetailComponent implements OnInit, OnDestroy{
         private route: ActivatedRoute,
     ) {}
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.routeSub = this.route.params.subscribe(params => {
             this.exerciseId = params['id'];
           })
 
         this.sub.add(
-            this.exerciseDetailService.getExerciseDetail(this.exerciseId).subscribe(
-                data => this.exerciseDetail = data,
-                catchError(e => throwError(e))
-            )
-        )
-        this.exerciseDetail = DETAIL;
+            this.exerciseDetailService.getExerciseDetail(this.exerciseId).subscribe({
+                next: data => {
+                    this.exerciseDetail = data;
+                },
+                error: msg => {
+                    console.log("error:", msg);
+                }
+            })
+        );
+    }
+
+    private mapToDetail(exercise: Exercise) {
+
     }
 
     ngOnDestroy(): void {

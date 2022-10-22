@@ -9,6 +9,9 @@ export class TrainingPlanListService {
     constructor(private trainingPlanListRestService: TrainingPlanListRestService) {}
     
     getTrainingPlans(userLogin: string): Observable<TrainingPlanTableData[]> {
-      return of([]);
+      if(!userLogin) {
+        return of([]);
+      }
+      return this.trainingPlanListRestService.getUsersTrainingPlanTableData(userLogin);
     }
 }

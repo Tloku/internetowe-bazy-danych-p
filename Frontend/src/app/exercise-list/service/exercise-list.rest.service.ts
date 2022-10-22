@@ -8,7 +8,7 @@ export class ExerciseListRestService {
     
     constructor(private httpClient: HttpClient) {}
     
-    fetchExercisesFromPlanById(planId: number): Observable<ExerciseWithRepsTableData[]> {
-        return this.httpClient.get<ExerciseWithRepsTableData[]>("http://localhost:8080/plans/" + planId);
+    getExercisesFromPlanById(planId: number): Observable<ExerciseWithRepsTableData[]> {
+        return this.httpClient.get<ExerciseWithRepsTableData[]>("http://localhost:8080/api/exercisesWithReps" + planId);
     }
 }

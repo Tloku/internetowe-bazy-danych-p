@@ -1,22 +1,22 @@
 CREATE TYPE MUSCLE_GROUP AS ENUM (
-    'Plecy',
-    'Nogi',
-    'Brzuch',
-    'Biceps',
-    'Triceps',
-    'Klatka piersiowa',
-    'Łydki',
-    'Barki'
+    'BACK',
+    'LEGS',
+    'BELLY',
+    'BICEPS',
+    'TRICEPS',
+    'CHEST',
+    'CALVES',
+    'SHOULDERS'
 );
 
 CREATE TYPE DIFFICULTY AS ENUM (
-    'Łatwe',
-    'Średnie',
-    'Trudne'
+    'EASY',
+    'MEDIUM',
+    'HARD'
 );
 
 CREATE TABLE EXERCISE (
-    id int4 NOT NULL,
+    id SERIAL NOT NULL,
     name varchar(255) NOT NULL UNIQUE,
     description varchar(2000) NOT NULL,
     url varchar(255),
@@ -26,7 +26,7 @@ CREATE TABLE EXERCISE (
 );
 
 CREATE TABLE EXERCISE_WITH_REPS (
-    id int4 NOT NULL,
+    id SERIAL NOT NULL,
     exercise_id int4 NOT NULL,
     plan_id int4 NOT NULL,
     reps int4 NOT NULL,
@@ -35,14 +35,14 @@ CREATE TABLE EXERCISE_WITH_REPS (
 );
 
 CREATE TABLE GYM_USER (
-    id int4 NOT NULL,
+    id SERIAL NOT NULL,
     login varchar(255) NOT NULL UNIQUE,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE TRAINING_PLAN (
-    id int4 NOT NULL,
+    id SERIAL NOT NULL,
     user_id int4 NOT NULL,
     name varchar(255) NOT NULL,
     date_from date NOT NULL,

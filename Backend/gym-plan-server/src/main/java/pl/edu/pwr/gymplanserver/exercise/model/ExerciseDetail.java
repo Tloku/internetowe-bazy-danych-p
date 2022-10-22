@@ -1,17 +1,21 @@
 package pl.edu.pwr.gymplanserver.exercise.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 import pl.edu.pwr.gymplanserver.enums.Difficulty;
 import pl.edu.pwr.gymplanserver.enums.MuscleGroup;
 
 @Component
-@Data
-public class ExerciseWithRepsTableData {
+@Getter
+@Setter
+@RequiredArgsConstructor
+public class ExerciseDetail {
     private int id;
     private String name;
-    private int reps;
-    private int series;
     private Difficulty difficulty;
     private MuscleGroup muscleGroup;
+    private String url;
+    private String description;
 }

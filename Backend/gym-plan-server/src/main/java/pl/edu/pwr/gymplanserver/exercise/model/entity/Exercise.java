@@ -19,9 +19,16 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
+
+    @Enumerated(EnumType.STRING)
     private MuscleGroup muscleGroup;
+
     private String url;
+
+    private String description;
 
     @OneToOne(mappedBy = "exercise")
     private ExerciseWithReps exerciseWithReps;

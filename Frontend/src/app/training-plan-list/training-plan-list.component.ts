@@ -16,33 +16,6 @@ export class TrainingPlanListComponent implements OnInit {
   public cols: any[] = [];
   private sub: Subscription = new Subscription();
 
-  testData: TrainingPlanTableData[] = [
-      {
-        id: 1,
-        name: "plan 1",
-        dateFrom: "08.08.2022",
-        dateTo: "08.08.2022",
-        difficulty: "Łatwy",
-        mainMuscleGroup: "Klatka piersiowa"
-      },
-      {
-        id: 2,
-        name: "plan 2",
-        dateFrom: "10.08.2022",
-        dateTo: "10.08.2022",
-        difficulty: "Średni",
-        mainMuscleGroup: "Nogi"
-      },
-      {
-        id: 3,
-        name: "plan 3",
-        dateFrom: "12.08.2022",
-        dateTo: "12.08.2022",
-        difficulty: "Trudny",
-        mainMuscleGroup: "Plecy"
-      },
-];
-
   constructor(
     private router: Router,
     private trainingPlanListService: TrainingPlanListService  
@@ -58,12 +31,18 @@ export class TrainingPlanListComponent implements OnInit {
         { field: '', header: ''},
         { field: '', header: ''},
     ];
-
-    let userLogin: string;
+  
+    let userLogin: string = "login";
+    
     this.sub.add(
-      this.trainingPlanListService.getTrainingPlans(userLogin).subscribe(
-        data => this.trainingPlanData = data
-      )
+      this.trainingPlanListService.getTrainingPlans(userLogin).subscribe({
+        next: data => {
+          this.trainingPlanData = data;
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
     );
   }
 

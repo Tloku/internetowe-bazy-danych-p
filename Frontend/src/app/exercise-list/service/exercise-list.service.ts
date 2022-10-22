@@ -12,6 +12,6 @@ export class ExerciseListService {
         if (isNaN(planId) || !planId) {
             return of([]);
         } 
-        return this.exerciseListRestService.fetchExercisesFromPlanById(planId);
+        return this.exerciseListRestService.getExercisesFromPlanById(planId);
     }
 }
