@@ -43,7 +43,9 @@ import { RegisterComponent } from './register/register.component';
 import { PanelModule } from 'primeng/panel';
 import {PasswordModule} from 'primeng/password';
 import {CalendarModule} from 'primeng/calendar';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreatePlanService } from './create-plan/service/create-plan.service';
+import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import {CalendarModule} from 'primeng/calendar';
     FormsModule,
     GMapModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ReactiveFormsModule
   ],
   providers: [
     ExerciseListService,
@@ -97,7 +100,9 @@ import {CalendarModule} from 'primeng/calendar';
     TrainingPlanListService,
     TrainingPlanListRestService,
     GMapService,
-    MessageService
+    MessageService,
+    CreatePlanService,
+    CreatePlanRestService
   ],
   bootstrap: [AppComponent],
 })

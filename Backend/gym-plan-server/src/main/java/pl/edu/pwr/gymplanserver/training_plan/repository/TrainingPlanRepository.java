@@ -12,4 +12,6 @@ public interface TrainingPlanRepository extends JpaRepository<TrainingPlan, Inte
 
     @Query("SELECT tp FROM TrainingPlan tp WHERE tp.gymUser.login = ?1")
     List<TrainingPlan> findAllGymUsersTrainingPlans(String login);
+
+    boolean existsTrainingPlanById(int planId);
 }
