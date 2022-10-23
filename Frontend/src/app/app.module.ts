@@ -37,6 +37,12 @@ import { GMapComponent } from './g-map/g-map.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
+import { LoginComponent } from './login/login.component';
+import { MenuModule } from 'primeng/menu';
+import { RegisterComponent } from './register/register.component';
+import { PanelModule } from 'primeng/panel';
+import {PasswordModule} from 'primeng/password';
+import {CalendarModule} from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePlanService } from './create-plan/service/create-plan.service';
 import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
@@ -49,6 +55,9 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     MainPageComponent,
     ExerciseListFromPlanComponent,
     ExerciseDetailComponent,
+    ExerciseDetailContainer,
+    LoginComponent,
+    RegisterComponent,
     ExerciseDetailContainer,
     CreatePlanPickListComponent,
     CreatePlanContainer,
@@ -66,6 +75,13 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     RouterModule,
     HttpClientModule,
     CardModule,
+    YouTubePlayerModule,
+    MenuModule,
+    PanelModule,
+    PasswordModule,
+    DropdownModule,
+    CalendarModule,
+    FormsModule,
     YouTubePlayerModule,
     PickListModule,
     DropdownModule,
