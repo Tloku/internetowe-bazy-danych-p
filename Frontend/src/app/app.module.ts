@@ -37,6 +37,9 @@ import { GMapComponent } from './g-map/g-map.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreatePlanService } from './create-plan/service/create-plan.service';
+import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,8 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     GMapModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ReactiveFormsModule
   ],
   providers: [
     ExerciseListService,
@@ -80,7 +84,9 @@ import { MessageService } from 'primeng/api';
     TrainingPlanListService,
     TrainingPlanListRestService,
     GMapService,
-    MessageService
+    MessageService,
+    CreatePlanService,
+    CreatePlanRestService
   ],
   bootstrap: [AppComponent],
 })

@@ -2,6 +2,7 @@ package pl.edu.pwr.gymplanserver.exercise;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import pl.edu.pwr.gymplanserver.exercise.model.ExerciseDetail;
 import pl.edu.pwr.gymplanserver.exercise.model.ExerciseTableData;

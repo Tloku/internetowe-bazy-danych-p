@@ -28,4 +28,5 @@ public class TrainingPlanMediator implements TrainingPlanAdapter {
 
         return translator.toTableData(trainingPlans);
     }
+
 }
