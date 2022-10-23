@@ -1,0 +1,12 @@
+<div class=content>
+  <p-panel class=panel header="Logowanie">
+    <p><input type="text" pInputText placeholder="Login"></p>
+    <p style="margin-top: 16px; margin-bottom: 16px"><input type="password" [feedback]="false" pPassword placeholder="Hasło"></p>
+    <a [routerLink]="'/register'">Nie masz konta? Zarejestruj</a>
+    <p style="margin-top: 16px">
+      <p-button class="button" [routerLink]="'/'" label="Zaloguj"></p-button>
+      <p-button class="button" [routerLink]="'/register'" label="Rejestracja"></p-button>
+    </p>
+
+  </p-panel>
+</div>

@@ -1,0 +1,17 @@
+<div class=content>
+  <p-panel class=panel header="Logowanie">
+    <p class="inputs"><input type="text" pInputText placeholder="Login"></p>
+    <p class="inputs"><input type="password" [feedback]="false" pPassword placeholder="Hasło"></p>
+    <p class="inputs"><input type="text" pInputText placeholder="E-mail"></p>
+    <p-dropdown class="inputs" [options]="sex" placeholder="Płeć" optionLabel="value"></p-dropdown>
+    <div style="margin: 1em;">
+      <p-calendar inputId="basic" placeholder="Data urodzenia" [(ngModel)]="dateOfBirth"></p-calendar>
+    </div>
+
+    <a [routerLink]="'/login'">Masz już konto? Zaloguj</a>
+    <p style="margin-top: 16px">
+      <p-button class="button" [routerLink]="'/register'" label="Rejestracja"></p-button>
+    </p>
+
+  </p-panel>
+</div>
