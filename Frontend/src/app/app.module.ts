@@ -47,6 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePlanService } from './create-plan/service/create-plan.service';
 import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
 
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +104,8 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     GMapService,
     MessageService,
     CreatePlanService,
-    CreatePlanRestService
+    CreatePlanRestService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

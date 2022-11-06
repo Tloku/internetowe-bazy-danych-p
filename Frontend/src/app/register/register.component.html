@@ -1,17 +1,80 @@
 <div class=content>
   <p-panel class=panel header="Logowanie">
-    <p class="inputs"><input type="text" pInputText placeholder="Login"></p>
-    <p class="inputs"><input type="password" [feedback]="false" pPassword placeholder="Hasło"></p>
-    <p class="inputs"><input type="text" pInputText placeholder="E-mail"></p>
-    <p-dropdown class="inputs" [options]="sex" placeholder="Płeć" optionLabel="value"></p-dropdown>
-    <div style="margin: 1em;">
-      <p-calendar inputId="basic" placeholder="Data urodzenia" [(ngModel)]="dateOfBirth"></p-calendar>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+    <p class="inputs"><input
+       type="text"
+       name="username"
+       [(ngModel)]="form.username"
+       required
+       minlength="3"
+       maxlength="20"
+       #username="ngModel"
+       [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+       pInputText placeholder="Login"></p>
+
+       <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+        <div *ngIf="username.errors['required']">Login jest wymagany!</div>
+        <div *ngIf="username.errors['minlength']">
+          Login musi mieć co najmniej 3 znaki!
+        </div>
+        <div *ngIf="username.errors['maxlength']">
+          Login musi mieć co najwyżej 3 znaki!
+        </div>
+      </div>
+
+    <p class="inputs"><input
+      type="password"
+      name="password"
+      [(ngModel)]="form.password"
+      required
+      minlength="6"
+      #password="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+      [feedback]="false" pPassword placeholder="Hasło"></p>
+
+      <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+        <div *ngIf="password.errors['required']">Hasło jest wymagane!</div>
+        <div *ngIf="password.errors['minlength']">
+          Hasło musi mieć co najmniej 6 znaków!
+        </div>
+      </div>
+
+    <p class="inputs"><input
+      type="email"
+      name="email"
+      [(ngModel)]="form.email"
+      required
+      email
+      #email="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+      pInputText placeholder="E-mail"></p>
+
+    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+      <div *ngIf="email.errors['required']">Email jest wymagany!</div>
+      <div *ngIf="email.errors['email']">
+        Email jest niepoprawny!
+      </div>
     </div>
+
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      Nie udało się zarejestrować!<br />{{ errorMessage }}
+    </div>
+
 
     <a [routerLink]="'/login'">Masz już konto? Zaloguj</a>
     <p style="margin-top: 16px">
-      <p-button class="button" [routerLink]="'/register'" label="Rejestracja"></p-button>
+      <p-button class="button btn btn-primary btn-block" label="Rejestracja" type="submit"></p-button>
     </p>
 
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Zarejestrowano użytkownika!
+    </div>
+  </form>
   </p-panel>
 </div>
