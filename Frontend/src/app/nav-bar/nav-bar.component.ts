@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../_services/auth.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,10 +11,13 @@ import { MenuItem } from 'primeng/api';
 export class NavBarComponent implements OnInit {
 
   items: MenuItem[];
+  items2: MenuItem[];
+  isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private storageService: StorageService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
     this.items = [{
       label: 'Logowanie',
       routerLink: '/login',
@@ -21,5 +26,19 @@ export class NavBarComponent implements OnInit {
    label: "Rejestracja",
    routerLink: '/register',
   }];
+  this.items2 = [{
+    label: 'Profil',
+    routerLink: '/profile',
+  },
+{
+ label: "Wyloguj",
+//  command: () => this.logout(),
+//  routerLink: '/',
+}];
   }
+
+  // logout(){
+  //   this.authService.logout();
+  //   window.location.reload();
+  // }
 }

@@ -45,10 +45,10 @@
     <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
       Login failed: {{ errorMessage }}
     </div>
+    </form>
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
+      Poprawnie zalogowano do systemu
     </div>
-    </form>
   </p-panel>
 </div>
