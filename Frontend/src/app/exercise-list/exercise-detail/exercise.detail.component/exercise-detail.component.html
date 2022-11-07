@@ -1,5 +1,5 @@
 <div class="content" *ngIf="exerciseDetail">
-    <h1> {{ exerciseDetail.name }} </h1>
+    <h1> {{ exerciseDetail.exerciseName }} </h1>
 
     <div class="subtitles">
         <h2>Grupa mięsniowa: {{ exerciseDetail.muscleGroup }} </h2>
@@ -17,7 +17,7 @@
     <div class="ytVideo">
         <div class="player">
             <youtube-player
-            videoId="YYbqPzlwY6c"
+            videoId={{exerciseDetail.url}}
             suggestedQuality="highres"
             [height]="400"
             [width]="550"

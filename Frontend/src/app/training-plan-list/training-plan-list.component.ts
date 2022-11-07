@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { difficultyMapperToString, muscleGroupMapperToString } from '../create-plan/service/create-plan.translator';
 import { TrainingPlanTableData } from '../model/training-plan-table-data';
 import { TrainingPlanListService } from './service/training-plan-list.service';
 
@@ -32,12 +33,12 @@ export class TrainingPlanListComponent implements OnInit {
         { field: '', header: ''},
     ];
   
-    let userLogin: string = "login";
+    let userLogin: string = "Admin";
     
     this.sub.add(
       this.trainingPlanListService.getTrainingPlans(userLogin).subscribe({
         next: data => {
-          this.trainingPlanData = data;
+          this.trainingPlanData = this.mapDataToTrainingPlanData(data);
         },
         error: err => {
           console.log(err);
@@ -46,9 +47,25 @@ export class TrainingPlanListComponent implements OnInit {
     );
   }
 
+  private mapDataToTrainingPlanData(data: TrainingPlanTableData[]) {
+    var trainingPlanData: TrainingPlanTableData[] = [];  
+    console.log(data);
+    
+    data.forEach(plan => 
+        trainingPlanData.push({
+          id: plan.id,
+          name: plan.name,
+          dateFrom: plan.dateFrom.toString(),
+          dateTo: plan.dateTo.toString(),
+          difficulty: null,
+          mainMuscleGroup: muscleGroupMapperToString(plan.mainMuscleGroup),
+         })
+    );
+    return trainingPlanData;
+  }
+
   public onRowClick($event, id) {
     this.router.navigateByUrl('/plans/' + id);
   }
-
-
 }
+

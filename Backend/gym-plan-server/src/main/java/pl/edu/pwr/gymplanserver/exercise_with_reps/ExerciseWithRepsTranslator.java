@@ -13,5 +13,4 @@ public interface ExerciseWithRepsTranslator {
     ExerciseWithRepsTranslator INSTANCE = Mappers.getMapper(ExerciseWithRepsTranslator.class);
 
     List<ExerciseWithRepsTableData> toTableData(List<ExerciseWithReps> exercisesWithReps);
-
 }

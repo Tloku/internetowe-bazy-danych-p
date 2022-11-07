@@ -3,8 +3,8 @@ import { MuscleGroup } from "./muscle-group";
 
 export class GetPaginatedAndFilteredExercisesReq {
     exerciseName: string;
-    muscleGroup: MuscleGroup;
-    difficulty: Difficulty;
+    muscleGroup: string;
+    difficulty: string;
     page: number;
     size: number;
 }

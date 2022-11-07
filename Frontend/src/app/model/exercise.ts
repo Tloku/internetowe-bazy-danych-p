@@ -3,9 +3,9 @@ import { MuscleGroup } from "./muscle-group";
 
 export interface Exercise {
     id: number;
-    name: string;
+    exerciseName: string;
     description: string;
     url: string;
-    difficulty: Difficulty;
-    muscleGroup: MuscleGroup;
+    difficulty: string;
+    muscleGroup: string;
 }

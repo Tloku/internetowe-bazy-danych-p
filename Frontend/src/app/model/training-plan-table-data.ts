@@ -6,6 +6,6 @@ export interface TrainingPlanTableData {
   name: string;
   dateFrom: string;
   dateTo: string;
-  difficulty: Difficulty;
-  mainMuscleGroup: MuscleGroup;
+  difficulty: string;
+  mainMuscleGroup: string;
 }

@@ -14,7 +14,7 @@ import pl.edu.pwr.gymplanserver.enums.MuscleGroup;
 @RequiredArgsConstructor
 public class ExerciseTableData {
     private int id;
-    private String name;
+    private String exerciseName;
     private MuscleGroup muscleGroup;
     private Difficulty difficulty;
 

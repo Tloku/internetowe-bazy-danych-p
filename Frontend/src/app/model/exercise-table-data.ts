@@ -4,7 +4,7 @@ import { MuscleGroup } from "./muscle-group";
 export interface ExerciseWithRepsTableData {
     id: number;
     muscleGroup: MuscleGroup;
-    name: string;
+    exerciseName: string;
     reps: number;
     series: number;
     difficulty: Difficulty;
@@ -12,7 +12,7 @@ export interface ExerciseWithRepsTableData {
 
 export interface ExerciseTableData {
     id: number;
-    muscleGroup: MuscleGroup;
-    name: string;
-    difficulty: Difficulty;
+    muscleGroup: string;
+    exerciseName: string;
+    difficulty: string;
 }

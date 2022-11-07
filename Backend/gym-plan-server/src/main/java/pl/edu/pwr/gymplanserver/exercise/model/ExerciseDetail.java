@@ -13,7 +13,7 @@ import pl.edu.pwr.gymplanserver.enums.MuscleGroup;
 @RequiredArgsConstructor
 public class ExerciseDetail {
     private int id;
-    private String name;
+    private String exerciseName;
     private Difficulty difficulty;
     private MuscleGroup muscleGroup;
     private String url;

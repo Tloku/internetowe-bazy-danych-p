@@ -10,6 +10,6 @@ export class ExerciseListRestService {
     
     getExercisesFromPlanById(planId: number): Observable<ExerciseWithRepsTableData[]> {
         console.info("[EXERCISE-WITH-REPS] Get call");
-        return this.httpClient.get<ExerciseWithRepsTableData[]>("http://localhost:8080/api/exercisesWithReps" + planId);
+        return this.httpClient.get<ExerciseWithRepsTableData[]>("http://localhost:8080/api/exercisesWithReps/" + planId);
     }
 }
