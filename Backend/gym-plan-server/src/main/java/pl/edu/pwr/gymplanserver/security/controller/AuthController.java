@@ -67,11 +67,11 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) throws ParseException {
         if (userRepository.existsByLogin(signUpRequest.getLogin())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+            return ResponseEntity.badRequest().body(new MessageResponse("Uzytkownik z takim loginem juz istnieje w systemie!"));
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+            return ResponseEntity.badRequest().body(new MessageResponse("Uzytkownik z takim emailem juz istnieje w systemie!"));
         }
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -83,13 +83,13 @@ public class AuthController {
 
         userRepository.save(gymUser);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Uzytkownik zarejestrowany poprawnie!"));
     }
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
-                .body(new MessageResponse("You've been signed out!"));
+                .body(new MessageResponse("Zostales wylogowany!"));
     }
 }

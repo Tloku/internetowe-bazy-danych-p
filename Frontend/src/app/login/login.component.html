@@ -16,7 +16,7 @@
       pInputText placeholder="Login"></p>
 
     <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
-      Login jest wymagany!
+      <p class="error">Login jest wymagany!</p>
     </div>
     <p style="margin-top: 16px; margin-bottom: 16px">
       <input type="password"
@@ -29,9 +29,11 @@
       [feedback]="false" pPassword placeholder="Hasło"></p>
 
       <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-        <div *ngIf="password.errors['required']">Hasło jest wymagane!</div>
+        <div *ngIf="password.errors['required']">
+          <p class="error">Hasło jest wymagane!</p>
+        </div>
         <div *ngIf="password.errors['minlength']">
-          Hasło musi mieć co najmniej 6 znaków!
+          <p class="error">Hasło musi mieć co najmniej 6 znaków!</p>
         </div>
       </div>
 
@@ -43,7 +45,7 @@
     </p>
 
     <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-      Login failed: {{ errorMessage }}
+      <p class="error">Logowanie nie powiodło się: {{ errorMessage }}</p>
     </div>
     </form>
 

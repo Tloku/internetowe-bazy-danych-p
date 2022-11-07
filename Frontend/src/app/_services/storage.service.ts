@@ -26,6 +26,10 @@ export class StorageService {
     return {};
   }
 
+  public removeUser(): void {
+    window.sessionStorage.removeItem(USER_KEY);
+  }
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {

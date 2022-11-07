@@ -32,13 +32,14 @@ export class NavBarComponent implements OnInit {
   },
 {
  label: "Wyloguj",
-//  command: () => this.logout(),
+ command: () => this.logout(),
 //  routerLink: '/',
 }];
   }
 
-  // logout(){
-  //   this.authService.logout();
-  //   window.location.reload();
-  // }
+  logout(){
+    this.authService.logout();
+    this.storageService.removeUser();
+    window.location.reload();
+  }
 }

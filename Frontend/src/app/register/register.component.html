@@ -19,12 +19,14 @@
        pInputText placeholder="Login"></p>
 
        <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
-        <div *ngIf="username.errors['required']">Login jest wymagany!</div>
+        <div *ngIf="username.errors['required']">
+          <p class="error">Login jest wymagany!</p>
+        </div>
         <div *ngIf="username.errors['minlength']">
-          Login musi mieć co najmniej 3 znaki!
+          <p class="error">Login musi mieć co najmniej 3 znaki!</p>
         </div>
         <div *ngIf="username.errors['maxlength']">
-          Login musi mieć co najwyżej 3 znaki!
+          <p class="error">Login musi mieć co najwyżej 3 znaki!</p>
         </div>
       </div>
 
@@ -39,9 +41,11 @@
       [feedback]="false" pPassword placeholder="Hasło"></p>
 
       <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
-        <div *ngIf="password.errors['required']">Hasło jest wymagane!</div>
+        <div *ngIf="password.errors['required']">
+          <p class="error">Hasło jest wymagane!</p>
+        </div>
         <div *ngIf="password.errors['minlength']">
-          Hasło musi mieć co najmniej 6 znaków!
+          <p class="error">Hasło musi mieć co najmniej 6 znaków!</p>
         </div>
       </div>
 
@@ -56,14 +60,16 @@
       pInputText placeholder="E-mail"></p>
 
     <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
-      <div *ngIf="email.errors['required']">Email jest wymagany!</div>
+      <div *ngIf="email.errors['required']">
+        <p class="error">Email jest wymagany!</p>
+      </div>
       <div *ngIf="email.errors['email']">
-        Email jest niepoprawny!
+        <p class="error">Email jest niepoprawny!</p>
       </div>
     </div>
 
     <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-      Nie udało się zarejestrować!<br />{{ errorMessage }}
+      <p class="error">Nie udało się zarejestrować!<br />{{ errorMessage }}</p>
     </div>
 
 
@@ -72,9 +78,9 @@
       <p-button class="button btn btn-primary btn-block" label="Rejestracja" type="submit"></p-button>
     </p>
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Zarejestrowano użytkownika!
-    </div>
   </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    <p>Zarejestrowano użytkownika!</p>
+  </div>
   </p-panel>
 </div>
