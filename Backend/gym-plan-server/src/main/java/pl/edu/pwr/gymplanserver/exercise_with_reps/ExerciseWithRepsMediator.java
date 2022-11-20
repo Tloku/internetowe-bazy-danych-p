@@ -11,6 +11,7 @@ import pl.edu.pwr.gymplanserver.training_plan.exceptions.TrainingPlanNotFoundExc
 import pl.edu.pwr.gymplanserver.training_plan.repository.TrainingPlanRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -33,6 +34,10 @@ public class ExerciseWithRepsMediator implements ExerciseWithRepsAdapter {
             throw new ExercisesWithRepsNotFoundException("Training plan with given id has no exercises");
         }
 
-        return translator.toTableData(exercisesWithReps);
+        List<ExerciseWithRepsTableData> exerciseWithRepsTableData = exercisesWithReps.stream()
+                .map(exerciseWithReps -> translator.oneToTableData(exerciseWithReps, exerciseWithReps.getExercise()))
+                .collect(Collectors.toList());
+
+        return exerciseWithRepsTableData;
     }
 }

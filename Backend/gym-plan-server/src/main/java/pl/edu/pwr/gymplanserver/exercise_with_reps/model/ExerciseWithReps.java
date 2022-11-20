@@ -20,7 +20,7 @@ public class ExerciseWithReps {
     private int reps;
     private int series;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 

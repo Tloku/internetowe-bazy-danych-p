@@ -1,0 +1,51 @@
+
+<div class="content">
+    <div class="add-button">
+        <button class="p-button-success p-button-rounded"
+        [disabled]="chosenExercisesTableData.length == 0"
+        (click)="updatePlan()" 
+        pRipple 
+        pButton  
+        icon="pi pi-check" 
+        label="Zaktualizuj plan"></button>
+    </div>
+    
+    <p-table class="table" [value]="chosenExercisesTableData" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 15]">
+    <ng-template pTemplate="caption">
+        Ćwiczenia w twoim planie
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Powtórzenia</th>
+                    <th>Serie</th>
+                    <th>Poziom trudności</th>
+                    <th>Partia</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-exercise>
+                <tr class="rows">
+                    <td>
+                        {{ exercise.exerciseName }}
+                    </td>
+                    <td>
+                        {{ exercise.reps }}
+                    </td>
+                    <td>
+                        {{ exercise.series }}
+                    </td>
+                    <td>
+                        {{ exercise.difficulty }}
+                    </td>
+                    <td>
+                        {{ exercise.muscleGroup}}
+                    </td>
+                </tr>
+            </ng-template>
+            
+            <ng-template pTemplate="paginatorright" style="margin: auto;">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+</div>
