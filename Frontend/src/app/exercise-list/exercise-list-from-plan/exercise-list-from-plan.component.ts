@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseListService } from '../service/exercise-list.service';
 import { catchError, Subscription, throwError } from 'rxjs';
 import { ExerciseWithRepsTableData } from 'src/app/model/exercise-table-data';
+import { difficultyMapperToString, muscleGroupMapperToString } from 'src/app/create-plan/service/create-plan.translator';
 
 @Component({
   selector: 'app-exercise-list-from-plan',
@@ -39,8 +40,12 @@ export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
     this.sub.add(
       this.exerciseListService.getExercisesFromPlan(this.planId).subscribe({
         next: data => {
-          console.log(data);
           this.exercises = data;
+
+          this.exercises.forEach(exercise => {
+            exercise.difficulty = difficultyMapperToString(exercise.difficulty)
+            exercise.muscleGroup = muscleGroupMapperToString(exercise.muscleGroup)
+          })
         },
         error: msg => {
           console.log("Error: ", msg);

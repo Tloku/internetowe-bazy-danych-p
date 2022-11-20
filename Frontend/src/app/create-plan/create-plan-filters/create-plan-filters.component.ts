@@ -25,6 +25,6 @@ export class CreatePlanFiltersComponent implements OnInit {
     }
 
     public filter() {
-        this.createPlanService.setFilters(this.name.value, muscleGroupMapperToEntity(this.muscleGroup), difficultyMapperToEntity(this.difficulty));
+        this.createPlanService.setFilters(this.name.value, muscleGroupMapperToEntity(this.muscleGroup), difficultyMapperToEntity(this.difficulty), null, null);
     }
 }

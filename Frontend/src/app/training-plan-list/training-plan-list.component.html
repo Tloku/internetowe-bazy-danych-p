@@ -24,13 +24,13 @@
                     {{ data.dateTo }}
                 </td>
                 <td (click)="onRowClick($event, data.id)">
-                    {{ data.difficulty ? data.difficulty : "Brak danych" }}
+                    {{ data.mainDifficulty }}
                 </td>
                 <td (click)="onRowClick($event, data.id)">
                     {{ data.mainMuscleGroup }}
                 </td>
                 <td>
-                    <button class="button" pButton label="Edytuj"></button>
+                    <button class="button" (click)="goToEditPage(data.id)" pButton label="Edytuj"></button>
                 </td>
                 <td>
                     <button class="button" pButton label="Usuń"></button>

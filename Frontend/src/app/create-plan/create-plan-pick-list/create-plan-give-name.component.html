@@ -1,0 +1,21 @@
+<div class="add-button">
+    <div class="add-button-content">    
+        <div class="add-button-label">
+            <span class="p-float-label">
+                <input id="name" type="text" pInputText [(ngModel)]="name">
+                <label for="name" >Nazwa planu</label>
+            </span>
+        </div>
+        <div class="add-button-button">
+            <button 
+                class="p-button-success p-button-rounded"
+                [disabled]="chosenExercisesWithRowsTableData.length == 0 || !name"
+                (click)="createPlan()" 
+                pRipple 
+                pButton 
+                label="Stwórz plan" 
+                icon="pi pi-check">
+            </button>
+        </div> 
+    </div>
+</div>

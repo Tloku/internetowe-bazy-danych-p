@@ -31,9 +31,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CreatePlanFiltersComponent } from './create-plan/create-plan-filters/create-plan-filters.component';
 import { FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { GMapModule } from 'primeng/gmap';
-import { GMapService } from './g-map/g-map.service';
-import { GMapComponent } from './g-map/g-map.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
@@ -46,6 +43,15 @@ import {CalendarModule} from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePlanService } from './create-plan/service/create-plan.service';
 import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
+import { DialogModule } from 'primeng/dialog';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { CreatePlanGiveNameComponent } from './create-plan/create-plan-pick-list/create-plan-give-name.component';
+import { EditPlanContainerComponent } from './edit-plan/edit-plan-container/edit-plan-container.component';
+import { EditPlanAllExercisesComponent } from './edit-plan/edit-plan-all-exercises/edit-plan-all-exercises.component';
+import { EditPlanUserExercisesComponent } from './edit-plan/edit-plan-user-exercises/edit-plan-user-exercises.component';
+import { EditPlanFilterComponent } from './edit-plan/edit-plan-filter/edit-plan-filter.component';
+import { EditPlanService } from './edit-plan/services/edit-plan.service';
+import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +68,11 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     CreatePlanPickListComponent,
     CreatePlanContainer,
     CreatePlanFiltersComponent,
-    GMapComponent,
+    CreatePlanGiveNameComponent,
+    EditPlanContainerComponent,
+    EditPlanAllExercisesComponent,
+    EditPlanUserExercisesComponent,
+    EditPlanFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -87,10 +97,11 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     DropdownModule,
     FlexModule,
     FormsModule,
-    GMapModule,
     MessagesModule,
     MessageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogModule,
+    InputNumberModule
   ],
   providers: [
     ExerciseListService,
@@ -99,10 +110,11 @@ import { CreatePlanRestService } from './create-plan/service/create-plan.rest.se
     ExerciseDetailRestService,
     TrainingPlanListService,
     TrainingPlanListRestService,
-    GMapService,
     MessageService,
     CreatePlanService,
-    CreatePlanRestService
+    CreatePlanRestService,
+    EditPlanService,
+    EditPlanRestSerivce
   ],
   bootstrap: [AppComponent],
 })

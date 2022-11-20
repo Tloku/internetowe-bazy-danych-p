@@ -50,6 +50,7 @@ CREATE TABLE TRAINING_PLAN (
         date_from         date NOT NULL,
         date_to           date NOT NULL,
         main_muscle_group MUSCLE_GROUP NOT NULL,
+        main_difficulty DIFFICULTY NOT NULL,
         PRIMARY KEY (id)
 );
 

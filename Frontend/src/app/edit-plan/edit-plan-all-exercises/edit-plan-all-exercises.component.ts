@@ -1,60 +1,58 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { ExerciseTableData, ExerciseWithRepsTableData } from "src/app/model/exercise-table-data";
-import { CreatePlanService } from "../service/create-plan.service";
+import { EditPlanService } from "../services/edit-plan.service";
+
 
 @Component({
-    selector: 'app-create-plan-pick-list-component',
-    templateUrl: './create-plan-pick-list.component.html',
-    styleUrls: ['./create-plan-pick-list.component.scss']
+    selector: "app-edit-plan-all-exercises",
+    templateUrl: './edit-plan-all-exercises.component.html',
+    styleUrls: ['./edit-plan-all-exercises.component.scss']
 })
-export class CreatePlanPickListComponent implements OnInit {
-    public allExercises: ExerciseTableData[] = [];
-    
-    private sub = new Subscription();
+export class EditPlanAllExercisesComponent implements OnInit {
     public displayDialog: boolean = false;
     public reps: number;
     public series: number;
+    public allExercises: ExerciseTableData[] = [];
+    private sub = new Subscription();
+    public userExercises: ExerciseWithRepsTableData[] = [];
     private exerciseToAdd: ExerciseTableData;
-    public chosenExercisesTableData: ExerciseWithRepsTableData[] = [];
 
     constructor(
-        private createPlanService: CreatePlanService,
+        private editPlanService: EditPlanService,
         private router: Router
     ) {}
 
+
     ngOnInit(): void {
-       this.createPlanService.setFilters("", "", "", 0, 10);
-       this.sub.add(
-            this.createPlanService.allExercises$.subscribe({
-                next: data => {
-                    this.allExercises = data;
-                },
-                error: error => console.log(error)
+        this.editPlanService.setFilters("", "", "", 0, 10);
+        this.sub.add(
+            this.editPlanService.allExercises$.subscribe(data =>{
+                if (data) {
+                    this.allExercises = data
+                }
             })
-       )
+        )
+        this.sub.add(
+            this.editPlanService.userExercises$.subscribe(data => {
+                if(data) {
+                    this.userExercises = data;
+                }
+            })
+        )
+
     }
-    
-    addToPlan(id: number) {
+
+    public addToPlan(id) {
+        if(this.userExercises.find(e => e.exerciseId == id)) {
+            return;
+        }
         this.exerciseToAdd = this.allExercises.find(e => e.id == id);
+
         if(this.exerciseToAdd) { 
             this.addRepsAndSeriesToExercise();
         }
-    }
-
-    removeFromPlan(id: number) {
-        const index = this.chosenExercisesTableData.indexOf(
-            this.chosenExercisesTableData.find(e => e.id = id)
-        )
-
-        if (index > -1) {
-            this.chosenExercisesTableData.splice(index, 1);
-        }
-    }
-
-    navigateToDetailsPage(id) {
-        this.router.navigate(['/exercise/' + id]);
     }
 
     public addRepsAndSeriesToExercise() {
@@ -63,8 +61,8 @@ export class CreatePlanPickListComponent implements OnInit {
         
         if(this.reps && this.series) {
             exerciseWithRepsTableData = this.mapExerciseTableDataToExerciseWithRepsTableData(this.exerciseToAdd);
-            this.chosenExercisesTableData.push(exerciseWithRepsTableData);
-            this.createPlanService.setChosenExercisesData(this.chosenExercisesTableData)
+            this.userExercises.push(exerciseWithRepsTableData);
+            this.editPlanService.serUserExercisesData(this.userExercises)
             this.reps = null;
             this.series = null;
             this.displayDialog = false;
@@ -90,5 +88,9 @@ export class CreatePlanPickListComponent implements OnInit {
         exerciseWithRepsTableData.series = this.series;
 
         return exerciseWithRepsTableData
+    }
+
+    public navigateToDetailsPage(id) {
+        this.router.navigate(['/exercise/' + id]);
     }
 }

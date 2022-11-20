@@ -1,8 +1,5 @@
-import { Exercise } from "./exercise";
-
 export class ExerciseWithReps {
-    id: number;
+    exerciseId: number;
     reps: number;
     series: number;
-    exercise: Exercise;
 }

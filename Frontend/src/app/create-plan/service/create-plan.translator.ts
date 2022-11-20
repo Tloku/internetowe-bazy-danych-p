@@ -1,5 +1,3 @@
-import { MuscleGroup } from "src/app/model/muscle-group";
-
 export function muscleGroupMapperToString(muscleGroup: string) {
     switch(muscleGroup.toUpperCase()) {
         case "BACK":
@@ -28,17 +26,17 @@ export function muscleGroupMapperToString(muscleGroup: string) {
 }
 
 export function difficultyMapperToString(difficulty: string) {
-    switch(difficulty.toUpperCase()) {
-        case "EASY":
-            return "Łatwe";
-        case "MEDIUM":
-            return "Średnie";
-        case "HARD":
-            return "Trudne";
-        default:
-            return "Nieokreślone";
+        switch(difficulty.toUpperCase()) {
+            case "EASY":
+                return "Łatwe";
+            case "MEDIUM":
+                return "Średnie";
+            case "HARD":
+                return "Trudne";
+            default:
+                return "Nieokreślone";
+        }
     }
-}
 
 export function difficultyMapperToEntity(difficulty: string) {
     switch(difficulty) {

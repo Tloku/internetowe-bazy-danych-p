@@ -1,13 +1,11 @@
-import { Difficulty } from "./difficulty";
-import { MuscleGroup } from "./muscle-group";
-
 export interface ExerciseWithRepsTableData {
     id: number;
-    muscleGroup: MuscleGroup;
+    muscleGroup: string;
     exerciseName: string;
+    exerciseId: number;
     reps: number;
     series: number;
-    difficulty: Difficulty;
+    difficulty: string;
 }
 
 export interface ExerciseTableData {
@@ -15,4 +13,14 @@ export interface ExerciseTableData {
     muscleGroup: string;
     exerciseName: string;
     difficulty: string;
+}
+
+export interface CreatePlanRequest {
+    name: string;
+    exerciseWithReps: ExerciseWithRepsTableData[];
+}
+
+export interface UpdatePlanRequest {
+    planId: number;
+    exerciseWithReps: ExerciseWithRepsTableData[];
 }

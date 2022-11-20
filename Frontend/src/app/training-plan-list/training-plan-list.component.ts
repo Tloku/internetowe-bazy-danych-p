@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { difficultyMapperToString, muscleGroupMapperToString } from '../create-plan/service/create-plan.translator';
@@ -12,7 +12,6 @@ import { TrainingPlanListService } from './service/training-plan-list.service';
 })
 export class TrainingPlanListComponent implements OnInit {
 
-  // @Input() userLogin: string
   public trainingPlanData: TrainingPlanTableData[]; 
   public cols: any[] = [];
   private sub: Subscription = new Subscription();
@@ -27,7 +26,7 @@ export class TrainingPlanListComponent implements OnInit {
         { field: 'name', header: 'Nazwa' },
         { field: 'dateFrom', header: 'Początek' },
         { field: 'dateTo', header: 'Koniec' },
-        { field: 'difficulty', header: 'Trudność' },
+        { field: 'mainDifficulty', header: 'Trudność' },
         { field: 'mainMuscleGroup', header: 'Główna partia mięśniowa'},
         { field: '', header: ''},
         { field: '', header: ''},
@@ -49,23 +48,27 @@ export class TrainingPlanListComponent implements OnInit {
 
   private mapDataToTrainingPlanData(data: TrainingPlanTableData[]) {
     var trainingPlanData: TrainingPlanTableData[] = [];  
-    console.log(data);
-    
-    data.forEach(plan => 
+    data.forEach(plan => {
         trainingPlanData.push({
           id: plan.id,
           name: plan.name,
-          dateFrom: plan.dateFrom.toString(),
-          dateTo: plan.dateTo.toString(),
-          difficulty: null,
+          dateFrom: plan.dateFrom.toString().replaceAll(',', '/'),
+          dateTo: plan.dateTo.toString().replaceAll(',', '/'),
+          mainDifficulty: difficultyMapperToString(plan.mainDifficulty),
           mainMuscleGroup: muscleGroupMapperToString(plan.mainMuscleGroup),
          })
+        }
     );
     return trainingPlanData;
   }
 
   public onRowClick($event, id) {
     this.router.navigateByUrl('/plans/' + id);
+  }
+
+  public goToEditPage(id) {
+    console.log(id)
+    this.router.navigateByUrl('edit-plan/' + id);
   }
 }
 

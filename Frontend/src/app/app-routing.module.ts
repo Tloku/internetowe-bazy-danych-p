@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatePlanContainer } from './create-plan/create-plan-container/create-plan.container';
+import { EditPlanContainerComponent } from './edit-plan/edit-plan-container/edit-plan-container.component';
 import { ExerciseDetailContainer } from './exercise-list/exercise-detail/exercise-detail.container/exercise-detail.container';
 import { ExerciseListFromPlanComponent } from './exercise-list/exercise-list-from-plan/exercise-list-from-plan.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,9 @@ const routes: Routes = [{
   },
   {
     path: "create-plan", component: CreatePlanContainer
+  },
+  {
+    path: "edit-plan/:id", component: EditPlanContainerComponent
   }
 ];
 

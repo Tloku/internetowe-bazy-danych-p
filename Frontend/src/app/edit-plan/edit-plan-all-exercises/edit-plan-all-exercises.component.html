@@ -1,6 +1,5 @@
-<div class="content">
-    <div class="pick-list">
-        <p-table class="table" [value]="allExercises" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<div>
+    <p-table class="table" [value]="allExercises" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 15]">
         <ng-template pTemplate="caption">
             Lista wszystkich ćwiczeń 
@@ -34,51 +33,7 @@
                 <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
             </ng-template>
         </p-table>
-    </div>
-
-    <div class="picked-list">
-        <p-table class="table" [value]="chosenExercisesTableData" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-        
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 15]">
-            <ng-template pTemplate="caption">
-                Ćwiczenia w twoim nowym planie
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Nazwa</th>
-                    <th>Powtórzenia</th>
-                    <th>Serie</th>
-                    <th>Poziom trudności</th>
-                    <th>Partia</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-exercise>
-                <tr class="rows" (click)="removeFromPlan(exercise.id)">
-                    <td>
-                        {{ exercise.exerciseName }}
-                    </td>
-                    <td>
-                        {{ exercise.reps }}
-                    </td>
-                    <td>
-                        {{ exercise.series }}
-                    </td>
-                    <td>
-                        {{ exercise.difficulty }}
-                    </td>
-                    <td>
-                        {{ exercise.muscleGroup }}
-                    </td>
-                </tr>
-            </ng-template>
-            
-            <ng-template pTemplate="paginatorright" style="margin: auto;">
-                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-            </ng-template>
-        </p-table>
-    </div>
 </div>
-
 
 <p-dialog header="Podaj powtórzenia i serie" [(visible)]="displayDialog" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '30vw'}">
     <div class="dialog">
