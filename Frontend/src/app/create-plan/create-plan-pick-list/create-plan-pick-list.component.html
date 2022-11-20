@@ -10,18 +10,22 @@
                     <th>Nazwa</th>
                     <th>Poziom trudności</th>
                     <th>Partia</th>
+                    <th></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-exercise>
-                <tr class="rows" (click)="addToPlan(exercise.id)">
-                    <td>
-                        {{ exercise.name }}
+                <tr>
+                    <td class="rows" (click)="addToPlan(exercise.id)">
+                        {{ exercise.exerciseName }}
                     </td>
-                    <td>
+                    <td class="rows" (click)="addToPlan(exercise.id)">
                         {{ exercise.difficulty }}
                     </td>
-                    <td>
+                    <td class="rows" (click)="addToPlan(exercise.id)">
                         {{ exercise.muscleGroup }}
+                    </td>
+                    <td>
+                        <button (click)="navigateToDetailsPage(exercise.id)" pButton icon="pi pi-info-circle" styleClass="p-button-rounded p-button-info"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -49,7 +53,7 @@
             <ng-template pTemplate="body" let-exercise>
                 <tr class="rows" (click)="removeFromPlan(exercise.id)">
                     <td>
-                        {{ exercise.name }}
+                        {{ exercise.exerciseName }}
                     </td>
                     <td>
                         {{ exercise.difficulty }}
@@ -68,5 +72,13 @@
 </div>
 
 <div class="add-button">
-    <button class="p-button-success p-button-rounded" pRipple pButton label="Stwórz plan" icon="pi pi-check"></button>
+    <div class="add-button-label">
+        <span class="p-float-label">
+            <input id="name" type="text" pInputText>
+            <label for="name" >Nazwa planu</label>
+        </span>
+    </div>
+    <div class="add-button-button">
+        <button class="p-button-success p-button-rounded" pRipple pButton label="Stwórz plan" icon="pi pi-check"></button>
+    </div> 
 </div>

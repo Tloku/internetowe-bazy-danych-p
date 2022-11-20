@@ -39,6 +39,7 @@ export class ExerciseListFromPlanComponent implements OnInit, OnDestroy {
     this.sub.add(
       this.exerciseListService.getExercisesFromPlan(this.planId).subscribe({
         next: data => {
+          console.log(data);
           this.exercises = data;
         },
         error: msg => {

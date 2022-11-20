@@ -6,7 +6,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
-import pl.edu.pwr.gymplanserver.exercise.model.ExerciseSpecification;
 import pl.edu.pwr.gymplanserver.exercise.model.entity.Exercise;
 
 import java.util.Optional;

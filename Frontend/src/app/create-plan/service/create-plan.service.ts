@@ -5,6 +5,7 @@ import { ExerciseTableData } from "src/app/model/exercise-table-data";
 import { GetPaginatedAndFilteredExercisesReq } from "src/app/model/get-paginated-and-filtered-exercises-req";
 import { MuscleGroup } from "src/app/model/muscle-group";
 import { CreatePlanRestService } from "./create-plan.rest.service";
+import { difficultyMapperToString, muscleGroupMapperToString } from "./create-plan.translator";
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class CreatePlanService implements OnInit {
         muscleGroup: null,
         difficulty: null,
         page: 0,
-        size: 10
+        size: 50
     };
 
 
@@ -30,24 +31,29 @@ export class CreatePlanService implements OnInit {
     ngOnInit(): void {
     }
     
-    setFilters(name: string, muscleGroup: MuscleGroup, difficulty: Difficulty) {
+    setFilters(name: string, muscleGroup: string, difficulty: string) {
         this.getExercisesReq.exerciseName = name;
         this.getExercisesReq.difficulty = difficulty;
         this.getExercisesReq.muscleGroup = muscleGroup;
-        this.createPlanRestService.getExercisesPaginatedAndFiltered(this.getExercisesReq).subscribe(data => this.setAllExercises(data));
+
+        console.log(this.getExercisesReq);
+        this.createPlanRestService.getExercisesPaginatedAndFiltered(this.getExercisesReq).subscribe(data => {
+            this.setAllExercises(data)
+        });
     }
 
     setPageAndSize(page: number, size: number) {
         this.getExercisesReq.page = page;
         this.getExercisesReq.size = size;
-        this.createPlanRestService.getExercisesPaginatedAndFiltered(this.getExercisesReq).subscribe(data => this.setAllExercises(data));
+        this.createPlanRestService.getExercisesPaginatedAndFiltered(this.getExercisesReq).subscribe(data => {
+            this.setAllExercises(data)
+        });
     }
 
 
     setAllExercises(data: ExerciseTableData[]) {
         let allExercises: ExerciseTableData[] = [];
-        console.log("data:", data);
-        data.forEach(e => allExercises.push({id: e.id, name: e.name, difficulty: e.difficulty, muscleGroup: e.muscleGroup}));
+        data.forEach(e => allExercises.push({id: e.id, exerciseName: e.exerciseName, difficulty: difficultyMapperToString(e.difficulty), muscleGroup: muscleGroupMapperToString(e.muscleGroup)}));
         this.allExercises.next(allExercises);
     }
 

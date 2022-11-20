@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
+import { difficultyMapperToString, muscleGroupMapperToString } from "src/app/create-plan/service/create-plan.translator";
 import { Difficulty } from "src/app/model/difficulty";
 import { Exercise } from "src/app/model/exercise";
 import { ExerciseDetailService } from "../../service/exercise-detali.service";
@@ -31,7 +32,14 @@ export class ExerciseDetailComponent implements OnInit, OnDestroy{
         this.sub.add(
             this.exerciseDetailService.getExerciseDetail(this.exerciseId).subscribe({
                 next: data => {
-                    this.exerciseDetail = data;
+                    this.exerciseDetail = {
+                        id: data.id,
+                        exerciseName: data.exerciseName,
+                        difficulty: difficultyMapperToString(data.difficulty),
+                        muscleGroup: muscleGroupMapperToString(data.muscleGroup),
+                        description: data.description,
+                        url: data.url
+                    };
                 },
                 error: msg => {
                     console.log("error:", msg);

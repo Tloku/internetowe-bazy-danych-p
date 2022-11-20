@@ -4,7 +4,7 @@
 >
     <h2>Twoje plany treningowe</h2>
 
-    <p-table class="table" fxFlex="100%" [columns]="cols" [value]="trainingPlanData" responsiveLayout="scroll">
+    <p-table class="table" fxFlex="100%" fxLayout="center" [columns]="cols" [value]="trainingPlanData" responsiveLayout="scroll">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
@@ -18,10 +18,13 @@
                     {{ data.name }}
                 </td>
                 <td (click)="onRowClick($event, data.id)">
-                    {{ data.date }}
+                    {{ data.dateFrom }}
                 </td>
                 <td (click)="onRowClick($event, data.id)">
-                    {{ data.difficulty }}
+                    {{ data.dateTo }}
+                </td>
+                <td (click)="onRowClick($event, data.id)">
+                    {{ data.difficulty ? data.difficulty : "Brak danych" }}
                 </td>
                 <td (click)="onRowClick($event, data.id)">
                     {{ data.mainMuscleGroup }}

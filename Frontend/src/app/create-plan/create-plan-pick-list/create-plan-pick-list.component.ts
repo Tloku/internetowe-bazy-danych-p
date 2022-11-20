@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ExerciseTableData } from "src/app/model/exercise-table-data";
 import { CreatePlanService } from "../service/create-plan.service";
@@ -14,7 +15,10 @@ export class CreatePlanPickListComponent implements OnInit {
     private sub = new Subscription();
 
 
-    constructor(private createPlanService: CreatePlanService) {}
+    constructor(
+        private createPlanService: CreatePlanService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
        this.createPlanService.setPageAndSize(0, 10);
@@ -22,16 +26,15 @@ export class CreatePlanPickListComponent implements OnInit {
             this.createPlanService.allExercises$.subscribe({
                 next: data => {
                     this.allExercises = data;
-                    console.log("sub", this.allExercises);
                 },
                 error: error => console.log(error)
             })
        )
-       console.log("oninit", this.allExercises);
     }
     
     addToPlan(id: number) {
-        this.chosenExercises.push(this.allExercises.find(e => e.id = id));
+        console.log(id);
+        this.chosenExercises.push(this.allExercises.find(e => e.id == id));
     }
 
     removeFromPlan(id: number) {
@@ -44,5 +47,8 @@ export class CreatePlanPickListComponent implements OnInit {
         }
     }
 
+    navigateToDetailsPage(id) {
+        this.router.navigate(['/exercise/' + id]);
+    }
     
 }
