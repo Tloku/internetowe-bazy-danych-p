@@ -1,12 +1,56 @@
 <div class=content>
   <p-panel class=panel header="Logowanie">
-    <p><input type="text" pInputText placeholder="Login"></p>
-    <p style="margin-top: 16px; margin-bottom: 16px"><input type="password" [feedback]="false" pPassword placeholder="Hasło"></p>
+    <form
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <p><input type="text"
+      name="username"
+      [(ngModel)]="form.username"
+      required
+      #username="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+      pInputText placeholder="Login"></p>
+
+    <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
+      <p class="error">Login jest wymagany!</p>
+    </div>
+    <p style="margin-top: 16px; margin-bottom: 16px">
+      <input type="password"
+      name="password"
+        [(ngModel)]="form.password"
+        required
+        minlength="6"
+        #password="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+      [feedback]="false" pPassword placeholder="Hasło"></p>
+
+      <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+        <div *ngIf="password.errors['required']">
+          <p class="error">Hasło jest wymagane!</p>
+        </div>
+        <div *ngIf="password.errors['minlength']">
+          <p class="error">Hasło musi mieć co najmniej 6 znaków!</p>
+        </div>
+      </div>
+
     <a [routerLink]="'/register'">Nie masz konta? Zarejestruj</a>
     <p style="margin-top: 16px">
-      <p-button class="button" [routerLink]="'/'" label="Zaloguj"></p-button>
+      <p-button class="button" label="Zaloguj" type="submit"></p-button>
+
       <p-button class="button" [routerLink]="'/register'" label="Rejestracja"></p-button>
     </p>
 
+    <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
+      <p class="error">Logowanie nie powiodło się: {{ errorMessage }}</p>
+    </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Poprawnie zalogowano do systemu
+    </div>
   </p-panel>
 </div>

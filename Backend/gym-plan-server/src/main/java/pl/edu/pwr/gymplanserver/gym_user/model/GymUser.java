@@ -24,4 +24,10 @@ public class GymUser {
 
     @OneToMany(mappedBy = "gymUser")
     private List<TrainingPlan> trainingPlans;
+
+    public GymUser(String login, String email, String password) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+    }
 }
