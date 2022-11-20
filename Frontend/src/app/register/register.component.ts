@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,23 +9,37 @@ import { SelectItem } from 'primeng/api';
 })
 export class RegisterComponent implements OnInit {
 
-  sex: SelectItem[];
-  dateOfBirth: Date;
-  constructor() {
-    this.sex = [
-      {label:'mężczyzna', value:'mężczyzna'},
-      {label:'kobieta', value:'kobieta'},
-      ];
+  form: any = {
+    username: null,
+    password: null,
+    email: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  constructor(private authService: AuthService) {
+
    }
 
   ngOnInit(): void {
 
   }
 
-  selectedSex="";
+  onSubmit(): void {
+    const { username, email, password } = this.form;
 
-  storeValue(event) {
-    console.log(event);
-    this.selectedSex = event.originalEvent.srcElement.innerText;
-}
+    this.authService.register(username, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    });
+  }
+
 }

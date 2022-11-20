@@ -53,6 +53,8 @@ import { EditPlanFilterComponent } from './edit-plan/edit-plan-filter/edit-plan-
 import { EditPlanService } from './edit-plan/services/edit-plan.service';
 import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service';
 
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,6 +117,7 @@ import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service
     CreatePlanRestService,
     EditPlanService,
     EditPlanRestSerivce
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })
