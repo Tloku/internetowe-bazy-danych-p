@@ -3,9 +3,11 @@
     <h1 >Gym Training Plan</h1>
   </a>
     <div class="links">
-        <p-button class="button" [routerLink]="'/create-plan'" label="Stwórz plan"></p-button>
-        <p-button class="button" [routerLink]="'/contact'" label="Kontakt"></p-button>
-        <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)="menu.toggle($event)"></button>
+        <p-button class="button" [routerLink]="'/create-plan'" label="Stwórz plan" *ngIf="isLoggedIn"></p-button>
+        <p-button class="button" [routerLink]="'/contact'" label="Kontakt" *ngIf="isLoggedIn"></p-button>
+        <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)="menu.toggle($event)" *ngIf="!isLoggedIn"></button>
           <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)="menu2.toggle($event)" *ngIf="isLoggedIn"></button>
+        <p-menu #menu2 [popup]="true" [model]="items2"></p-menu>
     </div>
 </div>

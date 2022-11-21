@@ -54,6 +54,8 @@ import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
 
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,8 +118,9 @@ import { ConfirmationService } from 'primeng/api';
     CreatePlanService,
     CreatePlanRestService,
     EditPlanService,
+    ConfirmationService,
     EditPlanRestSerivce,
-    ConfirmationService
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

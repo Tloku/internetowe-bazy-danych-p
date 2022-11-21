@@ -1,17 +1,86 @@
 <div class=content>
   <p-panel class=panel header="Logowanie">
-    <p class="inputs"><input type="text" pInputText placeholder="Login"></p>
-    <p class="inputs"><input type="password" [feedback]="false" pPassword placeholder="Hasło"></p>
-    <p class="inputs"><input type="text" pInputText placeholder="E-mail"></p>
-    <p-dropdown class="inputs" [options]="sex" placeholder="Płeć" optionLabel="value"></p-dropdown>
-    <div style="margin: 1em;">
-      <p-calendar inputId="basic" placeholder="Data urodzenia" [(ngModel)]="dateOfBirth"></p-calendar>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+    <p class="inputs"><input
+       type="text"
+       name="username"
+       [(ngModel)]="form.username"
+       required
+       minlength="3"
+       maxlength="20"
+       #username="ngModel"
+       [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+       pInputText placeholder="Login"></p>
+
+       <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+        <div *ngIf="username.errors['required']">
+          <p class="error">Login jest wymagany!</p>
+        </div>
+        <div *ngIf="username.errors['minlength']">
+          <p class="error">Login musi mieć co najmniej 3 znaki!</p>
+        </div>
+        <div *ngIf="username.errors['maxlength']">
+          <p class="error">Login musi mieć co najwyżej 3 znaki!</p>
+        </div>
+      </div>
+
+    <p class="inputs"><input
+      type="password"
+      name="password"
+      [(ngModel)]="form.password"
+      required
+      minlength="6"
+      #password="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+      [feedback]="false" pPassword placeholder="Hasło"></p>
+
+      <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+        <div *ngIf="password.errors['required']">
+          <p class="error">Hasło jest wymagane!</p>
+        </div>
+        <div *ngIf="password.errors['minlength']">
+          <p class="error">Hasło musi mieć co najmniej 6 znaków!</p>
+        </div>
+      </div>
+
+    <p class="inputs"><input
+      type="email"
+      name="email"
+      [(ngModel)]="form.email"
+      required
+      email
+      #email="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+      pInputText placeholder="E-mail"></p>
+
+    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+      <div *ngIf="email.errors['required']">
+        <p class="error">Email jest wymagany!</p>
+      </div>
+      <div *ngIf="email.errors['email']">
+        <p class="error">Email jest niepoprawny!</p>
+      </div>
     </div>
+
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      <p class="error">Nie udało się zarejestrować!<br />{{ errorMessage }}</p>
+    </div>
+
 
     <a [routerLink]="'/login'">Masz już konto? Zaloguj</a>
     <p style="margin-top: 16px">
-      <p-button class="button" [routerLink]="'/register'" label="Rejestracja"></p-button>
+      <p-button class="button btn btn-primary btn-block" label="Rejestracja" type="submit"></p-button>
     </p>
 
+  </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    <p>Zarejestrowano użytkownika!</p>
+  </div>
   </p-panel>
 </div>
