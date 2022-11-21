@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrainingPlanListComponent } from './training-plan-list/training-plan-list.component';
@@ -52,6 +51,8 @@ import { EditPlanUserExercisesComponent } from './edit-plan/edit-plan-user-exerc
 import { EditPlanFilterComponent } from './edit-plan/edit-plan-filter/edit-plan-filter.component';
 import { EditPlanService } from './edit-plan/services/edit-plan.service';
 import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service
     MessageModule,
     ReactiveFormsModule,
     DialogModule,
-    InputNumberModule
+    InputNumberModule,
+    ConfirmPopupModule,
   ],
   providers: [
     ExerciseListService,
@@ -114,7 +116,8 @@ import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service
     CreatePlanService,
     CreatePlanRestService,
     EditPlanService,
-    EditPlanRestSerivce
+    EditPlanRestSerivce,
+    ConfirmationService
   ],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { difficultyMapperToString, muscleGroupMapperToString } from '../create-plan/service/create-plan.translator';
 import { TrainingPlanTableData } from '../model/training-plan-table-data';
@@ -15,10 +16,12 @@ export class TrainingPlanListComponent implements OnInit {
   public trainingPlanData: TrainingPlanTableData[]; 
   public cols: any[] = [];
   private sub: Subscription = new Subscription();
-
+  userLogin: string = "Admin";
+  
   constructor(
     private router: Router,
-    private trainingPlanListService: TrainingPlanListService  
+    private trainingPlanListService: TrainingPlanListService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -32,10 +35,9 @@ export class TrainingPlanListComponent implements OnInit {
         { field: '', header: ''},
     ];
   
-    let userLogin: string = "Admin";
     
     this.sub.add(
-      this.trainingPlanListService.getTrainingPlans(userLogin).subscribe({
+      this.trainingPlanListService.getTrainingPlans(this.userLogin).subscribe({
         next: data => {
           this.trainingPlanData = this.mapDataToTrainingPlanData(data);
         },
@@ -67,8 +69,27 @@ export class TrainingPlanListComponent implements OnInit {
   }
 
   public goToEditPage(id) {
-    console.log(id)
     this.router.navigateByUrl('edit-plan/' + id);
+  }
+
+  public deletePlanConfiramtionPopup(event, id) {
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Czy na pewno chcesz usunąć plan treningowy?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.deletePlan(id);
+      },
+      acceptButtonStyleClass: "p-button-success p-button-raised",
+      rejectButtonStyleClass: "p-button-danger p-button-text",
+      acceptLabel: "Tak",
+      rejectLabel: "Nie"
+    });
+  }
+
+  private deletePlan(id) {
+      this.trainingPlanListService.deletePlan(id);
+      window.location.reload();
   }
 }
 

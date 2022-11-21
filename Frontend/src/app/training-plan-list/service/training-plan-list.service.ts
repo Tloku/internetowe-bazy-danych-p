@@ -14,4 +14,8 @@ export class TrainingPlanListService {
       }
       return this.trainingPlanListRestService.getUsersTrainingPlanTableData(userLogin);
     }
+
+    deletePlan(id: number) {
+      this.trainingPlanListRestService.deletePlan(id);
+    }
 }

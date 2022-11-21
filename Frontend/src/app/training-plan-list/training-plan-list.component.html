@@ -30,12 +30,13 @@
                     {{ data.mainMuscleGroup }}
                 </td>
                 <td>
-                    <button class="button" (click)="goToEditPage(data.id)" pButton label="Edytuj"></button>
+                    <button type="button" (click)="goToEditPage(data.id)" pButton label="Edytuj" icon="pi pi-wrench" class="p-button-warning p-button-raised"></button>
                 </td>
                 <td>
-                    <button class="button" pButton label="Usuń"></button>
+                    <button type="button" (click)="deletePlanConfiramtionPopup($event, data.id)" pButton label="Usuń" icon="pi pi-times" class="p-button-danger p-button-raised"></button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+<p-confirmPopup></p-confirmPopup>

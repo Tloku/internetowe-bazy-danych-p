@@ -22,6 +22,7 @@
                     <th>Serie</th>
                     <th>Poziom trudności</th>
                     <th>Partia</th>
+                    <th></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-exercise>
@@ -40,6 +41,9 @@
                     </td>
                     <td>
                         {{ exercise.muscleGroup}}
+                    </td>
+                    <td>
+                        <button (click)="removeExerciseFromChosenExercises(exercise.id)" pButton label="Usuń" icon="pi pi-times" class="p-button-danger p-button-raised"></button>
                     </td>
                 </tr>
             </ng-template>
