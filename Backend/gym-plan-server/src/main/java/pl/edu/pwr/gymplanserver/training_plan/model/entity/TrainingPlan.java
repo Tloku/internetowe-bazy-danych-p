@@ -43,10 +43,10 @@ public class TrainingPlan {
     @Type(type="pgsql_enum")
     private Difficulty mainDifficulty;
 
-    @OneToMany(mappedBy = "trainingPlan")
+    @OneToMany(mappedBy = "trainingPlan", orphanRemoval = true)
     private List<ExerciseWithReps> exercisesWithReps;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
     private GymUser gymUser;
 }
