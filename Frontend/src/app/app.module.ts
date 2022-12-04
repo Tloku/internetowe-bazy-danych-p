@@ -42,6 +42,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePlanService } from './create-plan/service/create-plan.service';
 import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
+import { CookieServiceModule, CookieConfig } from 'cookie-service-banner';
 import { DialogModule } from 'primeng/dialog';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { CreatePlanGiveNameComponent } from './create-plan/create-plan-pick-list/create-plan-give-name.component';
@@ -55,6 +56,47 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
+
+const testLibConfig: CookieConfig = {
+  header: {
+  title:"Cookie Consent Banner",
+  message: "Ta strona używa ciasteczek zgodnie z ustawieniami Twojej przeglądarki ",
+  domain:"localhost",
+  ga_id: "UA-123456-1",
+  color: '#fff',
+  bcolor: '#fff'
+  },
+  acceptButton: {
+  enable: true,
+  accept: "Rozumiem!",
+  color: '#fff',
+  bcolor: '#266433'
+  },
+  allowButton: {
+  enable: false,
+  allow: "Akceptuj",
+  color: '#000',
+  bcolor: '#f36e15f5'
+  },
+  declineButton: {
+  enable: false,
+  deny: "Odrzuć",
+  color: '#000',
+  bcolor: '#000'
+  },
+  learnMoreLink: {
+  enable: true,
+  learnMore: "Dowiedz się więcej",
+  link: "https://wszystkoociasteczkach.pl/",
+  color: '#3D9BFF'
+  },
+  review: {
+  enable: false,
+  message: "",
+  color: "",
+  bcolor: "",
+  }
+  }
 
 @NgModule({
   declarations: [
@@ -105,6 +147,9 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     ReactiveFormsModule,
     DialogModule,
     InputNumberModule,
+    ReactiveFormsModule,
+    CookieServiceModule,
+    CookieServiceModule.forRoot(testLibConfig),
     ConfirmPopupModule,
   ],
   providers: [
