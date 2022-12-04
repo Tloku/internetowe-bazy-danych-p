@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrainingPlanListComponent } from './training-plan-list/training-plan-list.component';
@@ -43,6 +42,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePlanService } from './create-plan/service/create-plan.service';
 import { CreatePlanRestService } from './create-plan/service/create-plan.rest.service';
+import { CookieServiceModule, CookieConfig } from 'cookie-service-banner';
 import { DialogModule } from 'primeng/dialog';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { CreatePlanGiveNameComponent } from './create-plan/create-plan-pick-list/create-plan-give-name.component';
@@ -52,8 +52,51 @@ import { EditPlanUserExercisesComponent } from './edit-plan/edit-plan-user-exerc
 import { EditPlanFilterComponent } from './edit-plan/edit-plan-filter/edit-plan-filter.component';
 import { EditPlanService } from './edit-plan/services/edit-plan.service';
 import { EditPlanRestSerivce } from './edit-plan/services/edit-plan.rest.service';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
+
+const testLibConfig: CookieConfig = {
+  header: {
+  title:"Cookie Consent Banner",
+  message: "Ta strona używa ciasteczek zgodnie z ustawieniami Twojej przeglądarki ",
+  domain:"localhost",
+  ga_id: "UA-123456-1",
+  color: '#fff',
+  bcolor: '#fff'
+  },
+  acceptButton: {
+  enable: true,
+  accept: "Rozumiem!",
+  color: '#fff',
+  bcolor: '#266433'
+  },
+  allowButton: {
+  enable: false,
+  allow: "Akceptuj",
+  color: '#000',
+  bcolor: '#f36e15f5'
+  },
+  declineButton: {
+  enable: false,
+  deny: "Odrzuć",
+  color: '#000',
+  bcolor: '#000'
+  },
+  learnMoreLink: {
+  enable: true,
+  learnMore: "Dowiedz się więcej",
+  link: "https://wszystkoociasteczkach.pl/",
+  color: '#3D9BFF'
+  },
+  review: {
+  enable: false,
+  message: "",
+  color: "",
+  bcolor: "",
+  }
+  }
 
 @NgModule({
   declarations: [
@@ -103,7 +146,11 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     MessageModule,
     ReactiveFormsModule,
     DialogModule,
-    InputNumberModule
+    InputNumberModule,
+    ReactiveFormsModule,
+    CookieServiceModule,
+    CookieServiceModule.forRoot(testLibConfig),
+    ConfirmPopupModule,
   ],
   providers: [
     ExerciseListService,
@@ -116,7 +163,8 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     CreatePlanService,
     CreatePlanRestService,
     EditPlanService,
-    EditPlanRestSerivce
+    ConfirmationService,
+    EditPlanRestSerivce,
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent],

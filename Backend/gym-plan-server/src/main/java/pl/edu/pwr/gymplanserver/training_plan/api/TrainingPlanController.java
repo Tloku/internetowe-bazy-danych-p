@@ -1,5 +1,6 @@
 package pl.edu.pwr.gymplanserver.training_plan.api;
 
+import com.electronwill.nightconfig.core.conversion.Path;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.sql.Update;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,11 @@ public class TrainingPlanController {
     @PostMapping("/update")
     public Integer updateTrainingPlan(@RequestBody UpdatePlanRequest request) {
         return trainingPlanAdapter.updateTrainingPlan(request);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Boolean deleteTrainingPlan(@PathVariable Integer id) {
+        return trainingPlanAdapter.deleteTrainingPlan(id);
     }
 
 }

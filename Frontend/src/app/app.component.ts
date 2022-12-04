@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
+import { CookieServiceModule, CookieConfig } from 'cookie-service-banner';
 
 @Component({
   selector: 'app-root',
@@ -39,5 +40,9 @@ export class AppComponent {
         console.log(err);
       }
     });
+  }
+
+  onOpen($event) {
+    console.log($event);
   }
 }

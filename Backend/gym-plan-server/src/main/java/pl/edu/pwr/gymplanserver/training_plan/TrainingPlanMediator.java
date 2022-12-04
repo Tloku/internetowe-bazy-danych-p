@@ -1,6 +1,7 @@
 package pl.edu.pwr.gymplanserver.training_plan;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 import pl.edu.pwr.gymplanserver.enums.simpleEnums.Difficulty;
 import pl.edu.pwr.gymplanserver.enums.simpleEnums.MuscleGroup;
@@ -95,8 +96,27 @@ public class TrainingPlanMediator implements TrainingPlanAdapter {
             ExerciseWithReps exerciseWithReps = service.mapExercises(exerciseFromRequest, trainingPlan.get());
             toSave.add(exerciseWithReps);
         }
-        trainingPlan.get().setExercisesWithReps(toSave);
+        trainingPlan.get().getExercisesWithReps().clear();
+        trainingPlan.get().getExercisesWithReps().addAll(toSave);
         return repository.save(trainingPlan.get()).getId();
+    }
+
+    @Override
+    @Transactional
+    @Modifying
+    public Boolean deleteTrainingPlan(Integer id) {
+
+        if (id == null) {
+            throw new RuntimeException();
+        }
+        Optional<TrainingPlan> plan = repository.findById(id);
+
+        if (plan.isEmpty()) {
+            throw new RuntimeException();
+        }
+
+        repository.delete(plan.get());
+        return true;
     }
 
 

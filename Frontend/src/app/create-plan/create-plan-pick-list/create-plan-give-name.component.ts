@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ExerciseWithRepsTableData } from "src/app/model/exercise-table-data";
 import { CreatePlanService } from "../service/create-plan.service";
@@ -16,7 +17,8 @@ export class CreatePlanGiveNameComponent implements OnInit {
     private sub = new Subscription()
 
     constructor(
-        private createPlanService: CreatePlanService
+        private createPlanService: CreatePlanService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -33,6 +35,7 @@ export class CreatePlanGiveNameComponent implements OnInit {
     public createPlan() {
         if (this.name && this.chosenExercisesWithRowsTableData) { 
             this.createPlanService.createPlan(this.name, this.chosenExercisesWithRowsTableData);
+            this.router.navigateByUrl('/');
         }
 
     }

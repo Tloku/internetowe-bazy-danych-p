@@ -19,4 +19,5 @@ public interface TrainingPlanAdapter {
 
     Integer updateTrainingPlan(UpdatePlanRequest request);
 
+    Boolean deleteTrainingPlan(Integer id);
 }
