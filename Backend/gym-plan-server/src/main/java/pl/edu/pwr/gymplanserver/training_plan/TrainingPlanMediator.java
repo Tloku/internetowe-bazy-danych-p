@@ -33,7 +33,6 @@ public class TrainingPlanMediator implements TrainingPlanAdapter {
     private final TrainingPlanRepository repository;
     private final TrainingPlanService service;
     private final GymUserRepository gymUserRepository;
-    private final ExerciseWithRepsRepository exerciseWithRepsRepository;
 
     @Override
     public List<TrainingPlanTableData> getTrainingPlanDataByLogin(String login) {
